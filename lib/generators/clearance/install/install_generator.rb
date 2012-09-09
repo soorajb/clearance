@@ -31,16 +31,9 @@ module Clearance
       private
 
       def migrations
-        if users_table_exists?
-          super.reject { |name| name.include?("create") } + ["db/migrate/upgrade_clearance_to_diesel.rb"]
-        else
           super
-        end
       end
 
-      def users_table_exists?
-        ActiveRecord::Base.connection.table_exists?(:users)
-      end
     end
   end
 end
